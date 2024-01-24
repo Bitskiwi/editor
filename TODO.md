@@ -1,0 +1,2 @@
+- Make a Canvas for Terminal Rendering:
+    - Get width of Terminal and create a Scalable Vector containing each "Pixel" (String containing "fg_code, bg_code, and a character")
