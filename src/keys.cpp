@@ -3,6 +3,8 @@
 ///////////////////
 
 #include <termios.h>
+#include <unistd.h>
+#include <fcntl.h>
 
 char get_key() {
 	struct termios oldt, newt;
