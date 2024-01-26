@@ -40,18 +40,22 @@ int main(){
 	newt.c_lflag &= ~(ICANON | ECHO);
 	tcsetattr(STDIN_FILENO, TCSANOW, &newt);
 
-	while(1){
-		canvas.reset();
-		key = get_key();
+	while(1){                                                                  // begin the operation loop
+		canvas.reset();                                                        // reset canvas for new frame
+		key = get_key();                                                       // store key for input operations
 
-		if(key == 'q'){
+		// global key actions
+
+		if(key == 'q'){                                                        // press q key to quit the program
 			break;
 		};
 
-		test.handle(key);
+		test.handle(key);                                                      // call the handle method of test window and pass key for window specific actions
 
-		canvas.render();
+		canvas.render();                                                       // draw the interface to the screen
 		system("sleep 0.01s");
 	};
-	tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+	tcsetattr(STDIN_FILENO, TCSANOW, &oldt);                                   // restore terminal settings to stop fucking around
+	system("clear");
+	std::cout << "Bye! thanks for using the editor!" << "\n";                          // politely thank the user before ending the program
 }
