@@ -32,17 +32,19 @@ std::string BG_RESET = "\033[49m";
 ////////////////////
 
 int main(){
-	struct termios oldt, newt;                                                 // save terminal settings so we can fuck around and find out (make non-blocking input)
-	char key;                                                                  // define a variable for storing the key that has been pressed
+	struct termios oldt, newt;                                                 // terminal settings
 
-	tcgetattr(STDIN_FILENO, &oldt);                                            // more terminal crap
+	tcgetattr(STDIN_FILENO, &oldt);                                            // terminal stuff
 	newt = oldt;
 	newt.c_lflag &= ~(ICANON | ECHO);
 	tcsetattr(STDIN_FILENO, TCSANOW, &newt);
 
+	fflush(stdin);
+
 	while(1){                                                                  // begin the operation loop
+		system("clear");
 		canvas.reset();                                                        // reset canvas for new frame
-		key = get_key();                                                       // store key for input operations
+		char key = get_key();                                                       // store key for input operations
 
 		// global key actions
 
@@ -53,9 +55,9 @@ int main(){
 		test.handle(key);                                                      // call the handle method of test window and pass key for window specific actions
 
 		canvas.render();                                                       // draw the interface to the screen
-		system("sleep 0.01s");
+		//system("sleep 0.01s");
 	};
 	tcsetattr(STDIN_FILENO, TCSANOW, &oldt);                                   // restore terminal settings to stop fucking around
 	system("clear");
-	std::cout << "Bye! thanks for using the editor!" << "\n";                          // politely thank the user before ending the program
+	std::cout << "Bye! thanks for using the editor!" << "\n";                  // politely thank the user before ending the program
 }
