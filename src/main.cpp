@@ -2,8 +2,8 @@
 // INCLUDES
 ////////////////////
 
+#include <termios.h>
 #include "canvas.cpp"
-#include "keys.cpp"
 
 ///////////////////
 // ANSI CODES
@@ -41,7 +41,7 @@ int main(){
 
 	while(1){                                                                  // begin the operation loop
 		canvas.reset();                                                        // reset canvas for new frame
-		char key = get_key();                                                       // store key for input operations
+		int key = getchar();                                                   // store key for input operations
 
 		// global key actions
 
@@ -50,8 +50,6 @@ int main(){
 		};
 
 		test.handle(key);                                                      // call the handle method of test window and pass key for window specific actions
-
-		canvas.draw(20,20,key);
 
 		canvas.render();                                                       // draw the interface to the screen
 	};

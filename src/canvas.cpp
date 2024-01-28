@@ -61,17 +61,15 @@ class window{                                                                  /
 		int y;
 		int w;
 		int h;
-		std::function<void(char key)> task_keypress;                           // variable holds key actions
-		std::function<void()> task_defaults;                                   // variable holds basic upkeep functions that are ran every cycle
-		window(int pos_x, int pos_y, int size_w, int size_h, void (*keypress)(char key), void (*defaults)()){      // constructor
+		std::function<void(int)> task;                                   // variable holds basic upkeep functions that are ran every cycle
+		window(int pos_x, int pos_y, int size_w, int size_h, void (*task_ptr)(int)){      // constructor
 			x = pos_x;                                                         // pos and size
 			y = pos_y;
 			w = size_w;
 			h = size_h;
-			task_keypress = keypress;                                          // keypress function
-			task_defaults = defaults;
+			task = task_ptr;
 		}
-		void window_defaults(){
+		void handle(int key){
 			for(int draw_y = y; draw_y < y + (h + 1); draw_y += h){            // iterate from top (y) to bottom (y + h)
 				for(int draw_x = x; draw_x < x + w; draw_x++){                 // iterate to draw a line from (x) to (x + w)
 					canvas.draw(draw_x,draw_y,'-');                            // draw at x, y
@@ -86,11 +84,7 @@ class window{                                                                  /
 			canvas.draw(x + w,y,'+');
 			canvas.draw(x,y + h,'+');
 			canvas.draw(x + w,y + h,'+');
-		}
-		void handle(char key){                                                 // handle calls keypress, loop, etc.
-			window_defaults();                                                 // does things that all windows should
-			task_defaults();                                                   // does things this window should
-			task_keypress(key);                                                // does things this window should but only when a certain key is pressed
+			task(key);
 		}
 };
 
@@ -100,7 +94,7 @@ class window{                                                                  /
 
 // testing tasks
 
-void test_keypress(char key){
+void test_task(int key){
 	if(key == 'd'){
 		canvas.draw(5,5,'H');
 		canvas.draw(6,5,'i');
@@ -110,15 +104,8 @@ void test_keypress(char key){
 	}
 }
 
-void test_loop(){
-	/*
-	for(int i = 0; i < 10; i++){
-		canvas.draw(i,i,'#');
-	} */
-}
-
 ///////////////////
 // WINDOW TYPES
 ///////////////////
 
-window test(0,0,10,10,&test_keypress,&test_loop);                                // make the window
+window test(0,0,10,10,&test_task);                                // make the window
