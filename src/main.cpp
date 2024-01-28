@@ -34,14 +34,23 @@ std::string BG_RESET = "\033[49m";
 int main(){
 	struct termios oldt, newt;                                                 // terminal settings
 
-	tcgetattr(STDIN_FILENO, &oldt);                                            // terminal stuff
-	newt = oldt;
-	newt.c_lflag &= ~(ICANON | ECHO);
-	tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+	tcgetattr(STDIN_FILENO, &oldt);                                            // assign current terminal settings to oldt
+	newt = oldt;                                                               // copy oldt value to newt
+	newt.c_lflag &= ~(ICANON | ECHO);                                          // turn off canonical & echo modes in newt
+	tcsetattr(STDIN_FILENO, TCSANOW, &newt);                                   // apply newt to terminal settings
+
+	bool first_iteration = true;                                               // when the program starts, getchar() halts the program, and canvas doesn't render so getchar() can't call on first iteration
+	int key;
 
 	while(1){                                                                  // begin the operation loop
 		canvas.reset();                                                        // reset canvas for new frame
-		int key = getchar();                                                   // store key for input operations
+		
+		if(first_iteration == true){                                           // program start first iteration shouldn't do getchar()
+			first_iteration = false;
+			key = 0;
+		}else{
+			key = getchar();                                                   // store key for input operations
+		}
 
 		// global key actions
 
