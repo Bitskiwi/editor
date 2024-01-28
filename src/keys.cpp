@@ -11,8 +11,9 @@
 // GET KEY FUNCTION
 ///////////////////
 
-char get_key() {
-	char key;
-	read(STDIN_FILENO, &key, 1);
+int get_key() {
+	int key;
+	//key = read(STDIN_FILENO, &key, 1);
+	key = getchar();
 	return key;
 }

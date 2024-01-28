@@ -39,10 +39,7 @@ int main(){
 	newt.c_lflag &= ~(ICANON | ECHO);
 	tcsetattr(STDIN_FILENO, TCSANOW, &newt);
 
-	fflush(stdin);
-
 	while(1){                                                                  // begin the operation loop
-		system("clear");
 		canvas.reset();                                                        // reset canvas for new frame
 		char key = get_key();                                                       // store key for input operations
 
@@ -54,8 +51,9 @@ int main(){
 
 		test.handle(key);                                                      // call the handle method of test window and pass key for window specific actions
 
+		canvas.draw(20,20,key);
+
 		canvas.render();                                                       // draw the interface to the screen
-		//system("sleep 0.01s");
 	};
 	tcsetattr(STDIN_FILENO, TCSANOW, &oldt);                                   // restore terminal settings to stop fucking around
 	system("clear");
