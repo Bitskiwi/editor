@@ -57,8 +57,11 @@ int main(){
 		if(key == 'q'){                                                        // press q key to quit the program
 			break;
 		};
-
-		test.handle(key);                                                      // call the handle method of test window and pass key for window specific actions
+		if(key == 'n'){                                                        // press n to create new window
+			wm.newWindow(&testTask);
+		};
+		
+		wm.handle(key);                                                        // call the window manager to do its job
 
 		canvas.render();                                                       // draw the interface to the screen
 	};
