@@ -9,8 +9,8 @@
 // ANSI CODES
 ///////////////////
 
-std::string FG_RED = "\033[31m"; 
-std::string FG_YELLOW = "\033[33m"; 
+std::string FG_RED = "\033[31m";
+std::string FG_YELLOW = "\033[33m";
 std::string FG_GREEN = "\033[32m";
 std::string FG_BLUE = "\033[34m";
 std::string FG_BLACK = "\033[30m";
@@ -44,7 +44,7 @@ int main(){
 
 	while(1){                                                                  // begin the operation loop
 		canvas.reset();                                                        // reset canvas for new frame
-		
+
 		if(first_iteration == true){                                           // program start first iteration shouldn't do getchar()
 			first_iteration = false;
 			key = 0;
@@ -60,7 +60,7 @@ int main(){
 		if(key == 'n'){                                                        // press n to create new window
 			wm.newWindow(&testTask);
 		};
-		
+
 		wm.handle(key);                                                        // call the window manager to do its job
 
 		canvas.render();                                                       // draw the interface to the screen

@@ -17,7 +17,7 @@
 
 class Canvas{
 public:
-	std::vector<std::vector<std::string>> matrix;                                     // make a matrix to store the canvas that will be rendered
+	std::vector<std::vector<std::string>> matrix;                              // make a matrix to store the canvas that will be rendered
 	int w;                                                                     // width
 	int h;                                                                     // height
 	Canvas(){
@@ -46,7 +46,7 @@ public:
 			std::cout << "\n";                                                 // CRLF to print the next row
 		};
 	};
-	void draw(int x, int y, std::string symbol){                                      // draw a char at x, y to canvas
+	void draw(int x, int y, std::string symbol){                               // draw a char at x, y to canvas
 		matrix[y][x] = symbol;                                                 // x, y is char now
 	};
 };
@@ -98,7 +98,7 @@ public:
 // testing tasks
 
 void testTask(Window &parent,int key){                                         // example task parent is for modifing the window ie: editing window.content when that is implemented
-	
+
 	// KEY ACTIONS
 
 	if(key == 'd'){
@@ -138,7 +138,7 @@ public:
 		}
 	}
 	void newWindow(void (*task_ptr)(Window&,int)){
-		windows.push_back(Window(0,0,10,canvas.h,&task_ptr));                  // push a new window to windows vector with
+		windows.push_back(Window(0,0,10,10,task_ptr));                  // push a new window to windows vector with
 		int win_w = std::floor(canvas.w / windows.size());                     // width for each window should be equal to fit the canvas
 		for(int i = 0; i < windows.size(); i++){                               // iterate windows vector
 			windows[i].w = win_w;                                              // update width
