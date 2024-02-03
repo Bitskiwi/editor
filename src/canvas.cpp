@@ -144,7 +144,7 @@ public:
 		for(int i = 0; i < windows.size(); i++){                               // iterate windows vector
 			windows[i].w = win_w;                                              // update width
 			windows[i].x = i * win_w;                                          // move to fit
-			//windows[i].h = win_h;
+			windows[i].h = canvas.h;
 		}
 	}/*
 	void hoverWindow(){}
