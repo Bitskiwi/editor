@@ -130,7 +130,7 @@ public:
 	Window (*hovered);                                                         // window pointer for hovered window
 	Window (*focused);                                                         // window pointer for focused window
 	WindowManager(){
-		this->newWindow(&testTask);                                            // on construction create a new window
+		this->newWindow(testTask);                                            // on construction create a new window
 	};
 	void handle(int key){
 		for(int i = 0; i < windows.size(); i++){
@@ -138,11 +138,13 @@ public:
 		}
 	}
 	void newWindow(void (*task_ptr)(Window&,int)){
-		windows.push_back(Window(0,0,10,10,task_ptr));                  // push a new window to windows vector with
+		windows.push_back(Window(0,0,10,10,task_ptr));                         // push a new window to windows vector with
 		int win_w = std::floor(canvas.w / windows.size());                     // width for each window should be equal to fit the canvas
+		//int win_h = std::floor(canvas.h);
 		for(int i = 0; i < windows.size(); i++){                               // iterate windows vector
 			windows[i].w = win_w;                                              // update width
 			windows[i].x = i * win_w;                                          // move to fit
+			//windows[i].h = win_h;
 		}
 	}/*
 	void hoverWindow(){}
