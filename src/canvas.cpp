@@ -47,9 +47,6 @@ public:
 		};
 	};
 	void draw(int x, int y, std::string symbol){                               // draw a char at x, y to canvas
-		if((x < 0) || (x > this->w) || (y < 0) || (y > this->h)){
-			return;
-		}
 		matrix[y][x] = symbol;                                                 // x, y is char now
 	};
 };
@@ -143,10 +140,9 @@ public:
 	void newWindow(void (*task_ptr)(Window&,int)){
 		windows.push_back(Window(0,0,10,10,task_ptr));                         // push a new window to windows vector with
 		int win_w = std::floor(canvas.w / windows.size());                     // width for each window should be equal to fit the canvas
-		int win_h = canvas.h;
 		for(int i = 0; i < windows.size(); i++){                               // iterate windows vector
 			windows[i].w = win_w;                                              // update width
-			windows[i].h = win_h;
+			windows[i].h = canvas.h;
 			windows[i].x = i * win_w;                                          // move to fit
 		}
 	}/*
