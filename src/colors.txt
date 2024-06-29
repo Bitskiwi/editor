@@ -1,0 +1,17 @@
+char[100] FG_RED = "\033[31m";
+char[100] FG_YELLOW = "\033[33m";
+char[100] FG_GREEN = "\033[32m";
+char[100] FG_BLUE = "\033[34m";
+char[100] FG_BLACK = "\033[30m";
+char[100] FG_WHITE = "\033[97";
+char[100] FG_GRAY = "\033[37";
+char[100] FG_RESET = "\033[0m";
+
+char[100] BG_RED = "\033[41";
+char[100] BG_YELLOW = "\033[43m";
+char[100] BG_GREEN = "\033[42m";
+char[100] BG_BLUE = "\033[44m";
+char[100] BG_BLACK = "\033[40m";
+char[100] BG_WHITE = "\033[107";
+char[100] BG_GRAY = "\033[47";
+char[100] BG_RESET = "\033[49m"; 
