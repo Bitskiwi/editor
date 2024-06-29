@@ -1,6 +1,6 @@
 # Editor
 basic text editor (Soon)
 ## Installation
-- `git clone https://github.com/bitskiwi/editor`
+- clone repo or download as zip
 ## Run the editor
-- `. run.sh`
+- `./editor`
