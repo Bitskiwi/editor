@@ -1,1 +1,1 @@
-gcc main.c canvas.c -o ../editor
+gcc main.c screen.c -o ../editor
