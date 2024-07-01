@@ -36,12 +36,13 @@ int main(){
 	system("clear");
 	set_term(1);
 	int w, h;
+	screen surf = init_screen();
 	char key;
 	while(1){
-		get_term_size(&w, &h);
 		printf("\033[H");
-		printf("%i", w);
-		screen surf = new_screen();
+		get_term_size(&w, &h);
+		surf = resize_screen(surf, w, h);
+		render_screen(surf);
 		char key = getchar();
 		if(key == 'q'){
 			break;
