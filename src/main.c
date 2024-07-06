@@ -10,10 +10,10 @@
 
 // SET TERMINAL
 
-void set_term(int x){
+void set_term(int i){
 	struct termios term;
 	tcgetattr(STDIN_FILENO, &term);
-	if(x == 1){
+	if(i == 1){
 		term.c_lflag &= ~(ICANON | ECHO);
 	} else {
 		term.c_lflag |= (ICANON | ECHO);
@@ -42,6 +42,7 @@ int main(){
 		printf("\033[H");
 		get_term_size(&w, &h);
 		surf = resize_screen(surf, w, h);
+		surf = fill_screen(surf, "#");
 		render_screen(surf);
 		char key = getchar();
 		if(key == 'q'){
