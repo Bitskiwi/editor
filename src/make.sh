@@ -1,1 +1,1 @@
-gcc main.c screen.c -o ../editor
+gcc main.c glyph.c screen.c -o ../editor
