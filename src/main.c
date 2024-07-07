@@ -26,8 +26,8 @@ void set_term(int i){
 void get_term_size(int *w, int *h){
 	struct winsize term;
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &term);
-	*w = term.ws_col - 3;
-	*h = term.ws_row - 3;
+	*w = term.ws_col - 1;
+	*h = term.ws_row - 1;
 }
 
 // MAIN
@@ -40,7 +40,7 @@ int main(){
 	char key;
 	get_term_size(&w, &h);
 	surf = resize_screen(surf, w, h);
-	surf = fill_screen(surf, init_glyph("#","",""));
+	surf = fill_screen(surf, " ", "", "");
 	while(1){
 		printf("\033[H");
 		render_screen(surf);
@@ -48,7 +48,8 @@ int main(){
 		if(key == 'q'){
 			break;
 		} else if(key == 'd'){
-			surf = draw_screen(surf, 3, 3, init_glyph("*","",""));
+			surf = draw_screen(surf, 3, 3, "A", "\033[34m", "");
+			surf = draw_screen(surf, 4, 4, "B", "\033[34m", "");
 		}
 	}
 	set_term(0);

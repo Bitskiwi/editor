@@ -3,16 +3,14 @@
 #ifndef SCREEN_H
 #define SCREEN_H
 
-// INCLUDES
-
-#include "glyph.h"
-
 // SCREEN STRUCTURE
 
 typedef struct screen {
 	int w;
 	int h;
-	glyph map[200][200];
+	char letters[100][100][6];
+	char fg[100][100][8];
+	char bg[100][100][8];
 } screen;
 
 // SCREEN CONSTRUCTOR
@@ -25,11 +23,11 @@ screen resize_screen(screen surf, int w, int h);
 
 // SCREEN DRAW
 
-screen draw_screen(screen surf, int x, int y, glyph gly);
+screen draw_screen(screen surf, int x, int y, char letter[6], char fg[8], char bg[8]);
 
 // SCREEN FILL
 
-screen fill_screen(screen surf, glyph gly);
+screen fill_screen(screen surf, char letter[6], char fg[8], char bg[8]);
 
 // SCREEN RENDER
 

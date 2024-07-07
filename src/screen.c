@@ -3,7 +3,6 @@
 #include "screen.h"
 #include <stdio.h>
 #include <string.h>
-#include "glyph.h"
 
 // SCREEN CONSTRUCTOR
 
@@ -22,17 +21,19 @@ screen resize_screen(screen surf, int w, int h){
 
 // SCREEN DRAW
 
-screen draw_screen(screen surf, int x, int y, glyph gly){
-	surf.map[y][x] = gly;
+screen draw_screen(screen surf, int x, int y, char letter[6], char fg[8], char bg[8]){
+	strcpy(surf.letters[y][x], letter);
+	strcpy(surf.fg[y][x], fg);
+	strcpy(surf.bg[y][x], bg);
 	return surf;
 }
 
 // SCREEN FILL
 
-screen fill_screen(screen surf, glyph gly){
+screen fill_screen(screen surf, char letter[6], char fg[8], char bg[8]){
 	for(int y = 0; y < surf.h; y++){
 		for(int x = 0; x < surf.w; x++){
-			surf = draw_screen(surf, x, y, gly);
+			surf = draw_screen(surf, x, y, letter, fg, bg);
 		}
 	}
 	return surf;
@@ -43,7 +44,9 @@ screen fill_screen(screen surf, glyph gly){
 void render_screen(screen surf){
 	for(int y = 0; y < surf.h; y++){
 		for(int x = 0; x < surf.w; x++){
-			render_glyph(surf.map[y][x]);
+			printf("%s",surf.letters[y][x]);
+			printf("%s",surf.fg[y][x]);
+			printf("%s",surf.bg[y][x]);
 		}
 		printf("\n");
 	}
