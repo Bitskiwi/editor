@@ -47,9 +47,8 @@ int main(){
 		char key = getchar();
 		if(key == 'q'){
 			break;
-		} else if(key == 'd'){
-			surf = draw_screen(surf, 3, 3, "A", "\033[34m", "");
-			surf = draw_screen(surf, 4, 4, "B", "\033[34m", "");
+		} else if (key >= 65 && key <= 90){
+			surf = draw_screen(surf, 1, 1, "A", "\033[34m", "");
 		}
 	}
 	set_term(0);

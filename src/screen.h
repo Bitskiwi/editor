@@ -3,14 +3,18 @@
 #ifndef SCREEN_H
 #define SCREEN_H
 
+// DEV EXP
+
+#define max 160
+
 // SCREEN STRUCTURE
 
 typedef struct screen {
 	int w;
 	int h;
-	char letters[100][100][6];
-	char fg[100][100][8];
-	char bg[100][100][8];
+	char letters[max][max][6];
+	char fg[max][max][8];
+	char bg[max][max][8];
 } screen;
 
 // SCREEN CONSTRUCTOR
